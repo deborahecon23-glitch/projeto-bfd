@@ -17,28 +17,31 @@ function cadastrarDespesas() {
     }
     despesas.push({ categoria, valor });
     alert("Despesa cadastrada com sucesso!")
-}
-function verResumo() {
+}function verResumo() {
     if (despesas.length === 0) {
         console.log("Nenhuma despesa cadastrada.");
         alert("Nenhuma despesa cadastrada. Pressione OK para voltar.");
         return;
     }
+        alert ("O resumo das despesas será exibido no console.Pressione OK para voltar ao menu")
+
+    console.clear();
     console.log("=== RESUMO DAS DESPESAS ===");
     let total = 0;
-    let maior = 0;
-    despesas.forEach(d => {
-        console.log(`Categoria: ${d.categoria}| Valor: R$ $
-            {d.valor.tofixed(2)}`);
-        total += d.valor;
-        if (d.valor > maior) maior = d.valor;
 
+    despesas.forEach((item, index) => {
+        console.log(`${index + 1}. Categoria: ${item.categoria} | Valor: R$ ${item.valor.toFixed(2)}`);
+        total += item.valor;
     });
-    let media = total / despesas.length;
-    console.log(`nValor total : R$ ${total. toFixed(2)}`);
-    console.log (` Valor médio R$ ${media.toFixed(2)}`);
-    console.log(`Maior despesa: R$ ${maior. toFixed(2)}`);
-        alert ("Resumo exibido no console! Pressione OK para voltar ao menu.");
+
+    const valorMedio = total / despesas.length;
+    const maiorDespesa = Math.max(...despesas.map(d => d.valor));
+
+    console.log("-----------------------------");
+    console.log(`Total gasto: R$ ${total.toFixed(2)}`);
+    console.log(`Valor médio: R$ ${valorMedio.toFixed(2)}`);
+    console.log(`Maior despesa: R$ ${maiorDespesa.toFixed(2)}`);
+}
 
 }
     function limparDespesas() {
